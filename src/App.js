@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import './App.css'
 
-function App() {
+const App = props => {
   return (
     <div className="App">
       <header className="App-header">
@@ -18,8 +18,9 @@ function App() {
           Learn React
         </a>
       </header>
+      {props.children}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
