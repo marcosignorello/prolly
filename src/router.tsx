@@ -1,13 +1,16 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
-import {IdentityContextProvider} from 'react-netlify-identity'
 import App from './App'
-import {NETLIFY_URL} from './const'
+import {Auth0Provider, useAuth0} from '@auth0/auth0-react'
 
 export const AppRouter = () => {
   return (
-    <Router>
-      <IdentityContextProvider url={NETLIFY_URL}>
+    <Auth0Provider
+      domain="prolly.eu.auth0.com"
+      clientId="F7YLedWzdrSBsSGJ02cDLoNnCz8RRY9h"
+      redirectUri={window.location.origin}
+    >
+      <Router>
         <App>
           <div>
             <ul>
@@ -34,8 +37,8 @@ export const AppRouter = () => {
             </Switch>
           </div>
         </App>
-      </IdentityContextProvider>
-    </Router>
+      </Router>
+    </Auth0Provider>
   )
 }
 
@@ -43,9 +46,22 @@ export const AppRouter = () => {
 // in your app.
 
 function Home() {
+  const {user, loginWithRedirect, isAuthenticated, logout} = useAuth0()
+
   return (
     <div>
       <h2>Home</h2>
+      {isAuthenticated ? (
+        <div>
+          <h2>{user.name}</h2>
+          <p>{user.email}</p>
+          <button onClick={() => logout({returnTo: window.location.origin})}>
+            Log Out
+          </button>
+        </div>
+      ) : (
+        <button onClick={() => loginWithRedirect()}>Log In</button>
+      )}
     </div>
   )
 }
