@@ -11,6 +11,7 @@ import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Design from "./pages/Design";
 
 import "./App.css";
 
@@ -32,6 +33,7 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route path="/design" component={Design} />
         </BrowserRouter>
         <Footer />
       </Main>
