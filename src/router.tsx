@@ -1,9 +1,16 @@
 import React from 'react'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {useAuth0, Auth0Provider} from '@auth0/auth0-react'
+import {routes} from './routes'
 import App from './App'
-import {Auth0Provider, useAuth0} from '@auth0/auth0-react'
 
 export const AppRouter = () => {
+  const {error} = useAuth0()
+
+  if (error) {
+    return <div>Oops... {error.message}</div>
+  }
+
   return (
     <Auth0Provider
       domain="prolly.eu.auth0.com"
@@ -12,30 +19,13 @@ export const AppRouter = () => {
     >
       <Router>
         <App>
-          <div>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/dashboard">Dashboard</Link>
-              </li>
-            </ul>
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
-            </Switch>
-          </div>
+          <Switch>
+            {routes.map(r => (
+              <Route exact={r.extact} path={r.path} component={r.component} />
+            ))}
+            <Route path="/editor" component={ProllyEditor} />
+            <Route path="/gallery/{id}" component={Gallery} />
+          </Switch>
         </App>
       </Router>
     </Auth0Provider>
@@ -44,40 +34,18 @@ export const AppRouter = () => {
 
 // You can think of these components as "pages"
 // in your app.
-
-function Home() {
-  const {user, loginWithRedirect, isAuthenticated, logout} = useAuth0()
-
+function ProllyEditor() {
   return (
     <div>
-      <h2>Home</h2>
-      {isAuthenticated ? (
-        <div>
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-          <button onClick={() => logout({returnTo: window.location.origin})}>
-            Log Out
-          </button>
-        </div>
-      ) : (
-        <button onClick={() => loginWithRedirect()}>Log In</button>
-      )}
+      <h2>Here the editor</h2>
     </div>
   )
 }
 
-function About() {
+function Gallery() {
   return (
     <div>
-      <h2>About</h2>
-    </div>
-  )
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
+      <h2>Gallery</h2>
     </div>
   )
 }
