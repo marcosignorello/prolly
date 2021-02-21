@@ -4,7 +4,7 @@ import {useAuth0, Auth0Provider} from '@auth0/auth0-react'
 import {routes} from './routes'
 import App from './App'
 
-export const AppRouter = () => {
+export const AppRouter: React.FC = () => {
   const {error} = useAuth0()
 
   if (error) {
@@ -21,7 +21,12 @@ export const AppRouter = () => {
         <App>
           <Switch>
             {routes.map(r => (
-              <Route exact={r.extact} path={r.path} component={r.component} />
+              <Route
+                exact={r.extact}
+                path={r.path}
+                component={r.component}
+                key={r.path}
+              />
             ))}
             <Route path="/editor" component={ProllyEditor} />
             <Route path="/gallery/{id}" component={Gallery} />
