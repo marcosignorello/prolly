@@ -22,10 +22,10 @@ export const AppRouter: React.FC = () => {
           <Switch>
             {routes.map(r => (
               <Route
-                exact={r.extact}
+                key={r.id}
+                exact={r.exact}
                 path={r.path}
                 component={r.component}
-                key={r.path}
               />
             ))}
             <Route path="/editor" component={ProllyEditor} />
