@@ -10,39 +10,29 @@ import {
 import {routes} from '../routes'
 
 interface Props {
-  sideDrawOpen: boolean
-  setSideDrawerOpen: Dispatch<SetStateAction<boolean>>
+  isSideDrawerOpen: boolean
+  setIsSideDrawerOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const SideDrawer: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
+export const SideDrawer: FC<Props> = ({
+  isSideDrawerOpen,
+  setIsSideDrawerOpen,
+}) => {
   const history = useHistory()
 
   const useStyles = makeStyles(theme => ({
-    navList: {
+    navigationList: {
       width: 250,
     },
-    navLink: {
+    navigationLink: {
       padding: theme.spacing(1),
     },
   }))
+
   const classes = useStyles()
 
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    ) {
-      return
-    }
-    setSideDrawerOpen(open)
-  }
-
   const handleNavigate = (pageURL: string) => {
-    setSideDrawerOpen(false)
+    setIsSideDrawerOpen(false)
     history.push(pageURL)
   }
 
@@ -50,11 +40,11 @@ export const SideDrawer: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
     <div>
       <SwipeableDrawer
         anchor="right"
-        open={sideDrawOpen}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
+        open={isSideDrawerOpen}
+        onClose={() => setIsSideDrawerOpen(false)}
+        onOpen={() => setIsSideDrawerOpen(true)}
       >
-        <List className={classes.navList}>
+        <List className={classes.navigationList}>
           {routes.map(route => {
             const {linkText, path} = route
             return (
@@ -62,11 +52,11 @@ export const SideDrawer: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
                 button
                 key={linkText}
                 onClick={() => handleNavigate(path)}
-                className={classes.navLink}
+                className={classes.navigationLink}
               >
                 <Button
                   color="inherit"
-                  className={classes.navLink}
+                  className={classes.navigationLink}
                   onClick={() => handleNavigate(path)}
                 >
                   {linkText}

@@ -20,8 +20,8 @@ import {useAuth0} from '@auth0/auth0-react'
 import {routes} from '../routes'
 
 interface Props {
-  sideDrawOpen: boolean
-  setSideDrawerOpen: Dispatch<SetStateAction<boolean>>
+  isSideDrawerOpen: boolean
+  setIsSideDrawerOpen: Dispatch<SetStateAction<boolean>>
 }
 
 /**
@@ -30,10 +30,16 @@ interface Props {
  * From my reading this will not happen in production and can be resolved by removing strict mode
  */
 
-export const AppHeader: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
+export const AppHeader: FC<Props> = ({
+  isSideDrawerOpen,
+  setIsSideDrawerOpen,
+}) => {
   const {isAuthenticated, loginWithPopup, logout, user} = useAuth0()
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const userMenuOpen = Boolean(anchorEl)
+  const [
+    userMenuAnchorElement,
+    setUserMenuAnchorElement,
+  ] = React.useState<null | HTMLElement>(null)
+  const isUserMenuOpen = Boolean(userMenuAnchorElement)
   const theme = useTheme()
   const history = useHistory()
   const isMobile = useMediaQuery(theme.breakpoints.down('xs'))
@@ -45,7 +51,7 @@ export const AppHeader: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
     loginButton: {
       marginLeft: theme.spacing(1),
     },
-    menuButton: {
+    navigationButton: {
       marginLeft: theme.spacing(1),
     },
     title: {
@@ -55,14 +61,15 @@ export const AppHeader: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
       padding: theme.spacing(1),
     },
   }))
+
   const classes = useStyles()
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
+  const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setUserMenuAnchorElement(event.currentTarget)
   }
 
-  const handleClose = () => {
-    setAnchorEl(null)
+  const handleUserMenuClose = () => {
+    setUserMenuAnchorElement(null)
   }
 
   const handleNavigate = (pageURL: string) => {
@@ -100,14 +107,14 @@ export const AppHeader: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                onClick={handleUserMenuOpen}
                 color="inherit"
               >
                 <AccountCircle />
               </IconButton>
               <Menu
                 id="menu-appbar"
-                anchorEl={anchorEl}
+                anchorEl={userMenuAnchorElement}
                 anchorOrigin={{
                   vertical: 'top',
                   horizontal: 'right',
@@ -117,12 +124,16 @@ export const AppHeader: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
                   vertical: 'top',
                   horizontal: 'right',
                 }}
-                open={userMenuOpen}
-                onClose={handleClose}
+                open={isUserMenuOpen}
+                onClose={handleUserMenuClose}
               >
                 <ListSubheader>{user.nickname}</ListSubheader>
                 <Divider />
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem
+                  onClick={() => console.log('todo: add link to account page')}
+                >
+                  My account
+                </MenuItem>
                 <MenuItem
                   onClick={() => logout({returnTo: window.location.origin})}
                 >
@@ -139,14 +150,15 @@ export const AppHeader: FC<Props> = ({sideDrawOpen, setSideDrawerOpen}) => {
               Login
             </Button>
           )}
+
           {isMobile ? (
             <IconButton
               edge="start"
-              className={classes.menuButton}
+              className={classes.navigationButton}
               color="inherit"
               aria-label="menu"
               onClick={() => {
-                setSideDrawerOpen(!sideDrawOpen)
+                setIsSideDrawerOpen(!isSideDrawerOpen)
               }}
             >
               <MenuIcon />

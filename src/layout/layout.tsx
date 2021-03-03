@@ -5,17 +5,17 @@ import {AppHeader} from './appHeader'
 import {SideDrawer} from './sideDrawer'
 
 export const Layout: FC = props => {
-  const [sideDrawOpen, setSideDrawerOpen] = useState<boolean>(false)
+  const [isSideDrawerOpen, setIsSideDrawerOpen] = useState<boolean>(false)
   return (
     <>
       <ThemeProvider theme={Theme}>
         <AppHeader
-          sideDrawOpen={sideDrawOpen}
-          setSideDrawerOpen={setSideDrawerOpen}
+          isSideDrawerOpen={isSideDrawerOpen}
+          setIsSideDrawerOpen={setIsSideDrawerOpen}
         />
         <SideDrawer
-          sideDrawOpen={sideDrawOpen}
-          setSideDrawerOpen={setSideDrawerOpen}
+          isSideDrawerOpen={isSideDrawerOpen}
+          setIsSideDrawerOpen={setIsSideDrawerOpen}
         />
         <div>{props.children}</div>
       </ThemeProvider>
