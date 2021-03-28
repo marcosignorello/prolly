@@ -1,23 +1,26 @@
 import {useAuth0} from '@auth0/auth0-react'
 import {Container, Grid, makeStyles} from '@material-ui/core'
+import Canvas from '../../components/Canvas/Canvas'
+import Filter from '../../components/Filter/Filter'
+import TopBar from '../../components/TopBar/TopBar'
 
 export const Welcome: React.FC = () => {
   const {user, isAuthenticated} = useAuth0()
   const classes = useStyles()
 
-  if (!isAuthenticated) return <h2>Welcome Please Loggin.</h2>
+  // if (!isAuthenticated) return <h2>Welcome Please Loggin.</h2>
 
   return (
     <Container>
       <Grid container spacing={3}>
         <Grid className={classes.toolbar} item xs={12}>
-          Tool Bar
+          <TopBar />
         </Grid>
         <Grid className={classes.canvas} item xs={12} md={9}>
-          Canvas
+          <Canvas />
         </Grid>
         <Grid className={classes.filter} item xs={12} md={3}>
-          Filter side bar
+          <Filter />
         </Grid>
       </Grid>
     </Container>
