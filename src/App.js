@@ -4,7 +4,7 @@ import './App.css'
 const App = props => {
   return (
     <Layout>
-      <div className="App">{props.children}</div>
+      <div className="App" id="dev-test">{props.children}</div>
     </Layout>
   )
 }
