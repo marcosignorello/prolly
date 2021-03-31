@@ -17,7 +17,7 @@ export const Layout: FC = props => {
           isSideDrawerOpen={isSideDrawerOpen}
           setIsSideDrawerOpen={setIsSideDrawerOpen}
         />
-        <div>{props.children}</div>
+        {props.children}
       </ThemeProvider>
     </>
   )
