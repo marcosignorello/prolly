@@ -1,44 +1,5 @@
-import {useAuth0} from '@auth0/auth0-react'
-import {Container, Grid, makeStyles} from '@material-ui/core'
-import Canvas from '../../components/Canvas/Canvas'
-import Filter from '../../components/Filter/Filter'
-import TopBar from '../../components/TopBar/TopBar'
+import {Container} from '@material-ui/core'
 
 export const Welcome: React.FC = () => {
-  const {user, isAuthenticated} = useAuth0()
-  const classes = useStyles()
-
-  // if (!isAuthenticated) return <h2>Welcome Please Loggin.</h2>
-
-  return (
-    <Container>
-      <Grid container spacing={3}>
-        <Grid className={classes.toolbar} item xs={12}>
-          <TopBar />
-        </Grid>
-        <Grid className={classes.canvas} item xs={12} md={9}>
-          <Canvas />
-        </Grid>
-        <Grid className={classes.filter} item xs={12} md={3}>
-          <Filter />
-        </Grid>
-      </Grid>
-    </Container>
-  )
+  return <Container>Welcome page</Container>
 }
-
-const useStyles = makeStyles(theme => {
-  return {
-    toolbar: {
-      outline: `1px dotted ${theme.palette.error.light}`,
-    },
-    canvas: {
-      outline: `1px dotted ${theme.palette.error.light}`,
-      minHeight: '70vh',
-    },
-    filter: {
-      outline: `1px dotted ${theme.palette.error.light}`,
-      minHeight: '70vh',
-    },
-  }
-})

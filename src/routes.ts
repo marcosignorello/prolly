@@ -1,4 +1,4 @@
-import {Welcome, Contact, About} from './pages'
+import {Welcome, Contact, About, Editor} from './pages'
 export const routes = [
   {
     id: 1,
@@ -23,5 +23,13 @@ export const routes = [
     linkText: 'Contact',
     path: '/contact',
     component: Contact,
+  },
+  {
+    id: 4,
+    exact: true,
+    showInHeader: true,
+    linkText: 'editor',
+    path: '/editor',
+    component: Editor,
   },
 ]
