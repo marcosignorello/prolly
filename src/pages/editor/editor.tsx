@@ -1,10 +1,12 @@
 import {Container, Grid, makeStyles} from '@material-ui/core'
+import React from 'react'
 import Canvas from '../../components/Canvas/Canvas'
 import Filter from '../../components/Filter/Filter'
 import TopBar from '../../components/TopBar/TopBar'
 
 export const Editor: React.FC = () => {
   const classes = useStyles()
+  const [name, setName] = React.useState<string>('Name of the baby')
 
   return (
     <Container>
@@ -13,10 +15,10 @@ export const Editor: React.FC = () => {
           <TopBar />
         </Grid>
         <Grid className={classes.canvas} item xs={12} md={9}>
-          <Canvas />
+          <Canvas name={name} />
         </Grid>
         <Grid className={classes.filter} item xs={12} md={3}>
-          <Filter />
+          <Filter name={name} setName={setName} />
         </Grid>
       </Grid>
     </Container>
