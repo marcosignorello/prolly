@@ -4,6 +4,7 @@ import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
+import {FormLabel, Input, Radio} from '@material-ui/core'
 
 const Accordion = withStyles({
   root: {
@@ -39,7 +40,6 @@ const AccordionSummary = withStyles({
   },
   expanded: {},
 })(MuiAccordionSummary)
-
 const AccordionDetails = withStyles(theme => ({
   root: {
     padding: theme.spacing(2),
@@ -68,27 +68,27 @@ export const Filter = () => {
         </AccordionSummary>
         <AccordionDetails>
           <div className="filter-div">
-            <label htmlFor="name">
-              Name <input id="name" />
-            </label>
-            <label htmlFor="male">
-              M <input id="male" type={'radio'} />
-            </label>
-            <label htmlFor="female">
-              F <input id="female" type={'radio'} />
-            </label>
-            <label htmlFor="other">
-              Other <input id="other" type={'radio'} />
-            </label>
-            <label htmlFor="length">
-              Length <input id="length" />
-            </label>
-            <label htmlFor="weight">
-              Weight <input id="weight" />
-            </label>
-            <label htmlFor="Message">
-              Message <input id="Message" />
-            </label>
+            <FormLabel htmlFor="name">
+              Name <Input id="name" />
+            </FormLabel>
+            <FormLabel htmlFor="male">
+              M <Input id="male" type={'radio'} />
+            </FormLabel>
+            <FormLabel htmlFor="female">
+              F <Input id="female" type={'radio'} />
+            </FormLabel>
+            <FormLabel htmlFor="other">
+              Other <Input id="other" type={'radio'} />
+            </FormLabel>
+            <FormLabel htmlFor="length">
+              Length <Input id="length" />
+            </FormLabel>
+            <FormLabel htmlFor="weight">
+              Weight <Input id="weight" />
+            </FormLabel>
+            <FormLabel htmlFor="Message">
+              Message <Input id="Message" />
+            </FormLabel>
           </div>
         </AccordionDetails>
       </Accordion>
@@ -101,15 +101,15 @@ export const Filter = () => {
           <Typography>Styles</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <label htmlFor="color">
-            Base Color <input id="color" type={'radio'} />
-          </label>
-          <label htmlFor="orentation">
-            Base Color <input id="orentation" type={'radio'} />
-          </label>
-          <label htmlFor="size">
-            Size <input id="size" type={'radio'} />
-          </label>
+          <FormLabel htmlFor="color">
+            Base Color <Radio id="color" />
+          </FormLabel>
+          <FormLabel htmlFor="orentation">
+            Base Color <Radio id="orentation" />
+          </FormLabel>
+          <FormLabel htmlFor="size">
+            Size <Input id="size" />
+          </FormLabel>
         </AccordionDetails>
       </Accordion>
     </div>
