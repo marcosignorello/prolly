@@ -50,7 +50,7 @@ export const Filter = () => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1')
 
   const handleChange = (panel: string) => (
-    event: React.ChangeEvent<any>,
+    event: React.ChangeEvent<unknown>,
     newExpanded: boolean,
   ) => {
     setExpanded(newExpanded ? panel : false)
