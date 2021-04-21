@@ -1,8 +1,7 @@
 import {Container, Grid, makeStyles} from '@material-ui/core'
-import Canvas from '../../components/Canvas/Canvas'
-import Filter from '../../components/Filter/Filter'
-import TopBar from '../../components/TopBar/TopBar'
-
+import {Canvas} from './components/canvas'
+import {Filter} from './components/filter'
+import {ToolBar} from './components/toolBar'
 export const Editor: React.FC = () => {
   const classes = useStyles()
 
@@ -10,7 +9,7 @@ export const Editor: React.FC = () => {
     <Container>
       <Grid container spacing={3}>
         <Grid className={classes.toolbar} item xs={12}>
-          <TopBar />
+          <ToolBar />
         </Grid>
         <Grid className={classes.canvas} item xs={12} md={9}>
           <Canvas />

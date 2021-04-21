@@ -10,4 +10,19 @@ export const Theme = createMuiTheme({
       main: colors.SECONDARY_COLOR,
     },
   },
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+  spacing: factor => `${0.25 * factor}em`,
 })
