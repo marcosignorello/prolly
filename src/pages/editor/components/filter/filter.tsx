@@ -4,7 +4,6 @@ import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
-import {FormLabel, Input, Radio} from '@material-ui/core'
 
 const Accordion = withStyles({
   root: {
@@ -64,32 +63,10 @@ export const Filter = () => {
         onChange={handleChange('details')}
       >
         <AccordionSummary aria-controls="details-content" id="details-header">
-          <Typography>Details</Typography>
+          <Typography>Pose</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <div className="filter-div">
-            <FormLabel htmlFor="name">
-              Name <Input id="name" />
-            </FormLabel>
-            <FormLabel htmlFor="male">
-              M <Input id="male" type={'radio'} />
-            </FormLabel>
-            <FormLabel htmlFor="female">
-              F <Input id="female" type={'radio'} />
-            </FormLabel>
-            <FormLabel htmlFor="other">
-              Other <Input id="other" type={'radio'} />
-            </FormLabel>
-            <FormLabel htmlFor="length">
-              Length <Input id="length" />
-            </FormLabel>
-            <FormLabel htmlFor="weight">
-              Weight <Input id="weight" />
-            </FormLabel>
-            <FormLabel htmlFor="Message">
-              Message <Input id="Message" />
-            </FormLabel>
-          </div>
+          <div className="filter-div"></div>
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -98,19 +75,9 @@ export const Filter = () => {
         onChange={handleChange('style')}
       >
         <AccordionSummary aria-controls="style-content" id="style-header">
-          <Typography>Styles</Typography>
+          <Typography>Captions</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <FormLabel htmlFor="color">
-            Base Color <Radio id="color" />
-          </FormLabel>
-          <FormLabel htmlFor="orentation">
-            Base Color <Radio id="orentation" />
-          </FormLabel>
-          <FormLabel htmlFor="size">
-            Size <Input id="size" />
-          </FormLabel>
-        </AccordionDetails>
+        <AccordionDetails></AccordionDetails>
       </Accordion>
     </div>
   )
