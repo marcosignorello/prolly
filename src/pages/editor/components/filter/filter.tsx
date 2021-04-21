@@ -49,7 +49,7 @@ export const Filter = () => {
   const [expanded, setExpanded] = React.useState<string | false>('panel1')
 
   const handleChange = (panel: string) => (
-    event: React.ChangeEvent<unknown>,
+    event: React.ChangeEvent<any>,
     newExpanded: boolean,
   ) => {
     setExpanded(newExpanded ? panel : false)
@@ -66,7 +66,7 @@ export const Filter = () => {
           <Typography>Pose</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <div className="filter-div"></div>
+          <div className="filter-div">Image</div>
         </AccordionDetails>
       </Accordion>
       <Accordion
